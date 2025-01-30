@@ -583,8 +583,6 @@
             - React Bootstrap:  npm install react-bootstrap bootstrap , to choose bootstrap theme in order to apply bootstrap properly in react.
                use https://bootswatch.com/ for selecting theme. Download bootstrap.min.css file of the theme and add that file  inside project src folder.
                - import bootstrap.min.css to main.jsx file of project
-            - Tailwind CSS: npm install -D tailwindcss postcss autoprefixer
-                npx tailwindcss init -p, use the guildlines from the given link:"https://tailwindcss.com/docs/guides/vite" 
 
     10. Event Handling in React: syntax: event={functionCall}
             - Binding function without argument: event ={functionName}
@@ -605,6 +603,10 @@
                         - empty array : side effects will apply to the component only at the time of loading the component in DOM
                         - [state/props/variable_name] : side effects will apply to the component only at the  time of loading the component in DOM but also whenever the value of state/props/ varbale_name given in the dependency changes.
                  - useRef(initial value):  is a react hook  that lets you reference a value thats not needed for rendering. initialValue is optional in useRef hook. it return an object with 'current' key
+                 - useSelector(): hook is used to select state from redux store
+                 - useDispatch(): hook used to dispatch action from a component
+                 - useParams() : hook will return dynamic value of route asociated with a component
+
             - Custom hooks:  create js file to define a specific function for a special task. export the function from that file. function name  must start with 'use' keyword
     13. Form handling in React:  there are 2 ways to manage data inside the form by a component.
         - Controlled components: there are  components which store form data inside its own state
@@ -651,3 +653,33 @@
             - use middleware, route inside the server
             - run server using the give port 
             - To execute our app we have use: node index.js in terminal, so that output is on : localhost:3000
+
+
+
+            
+        ------------------------------------------------------------------------------
+                                         REDUX - STATE MANAGEMENT TOOL
+        ------------------------------------------------------------------------------
+
+
+        1. A JS library for predictable and maintainable global state management
+        2. Redux consists of 2 packages:
+            - React-Redux: Official React bindings for Redux
+            - Redux -Toolkit: The official, opinionated, batteries-included toolset for efficient Redux development
+        3. Important API used redux:
+            - configureStore(): to create a store in redux.
+                - steps to create redux store in react app
+                    - create a folder reduc logic in src folder
+                    - inside redux folder create a js file for creating redux store
+                - To provide store to our react app use 'Provider' component of react-redux. Provider component has'store' attribute using it we can provide our store to react app.  Inorder to do that make Provider component as the root component of our react app. Give this to main.jsx
+            - createReducer(): used to create reducres where we can store updated state inside store.
+            - createAction(): used to create action where we can define logic to update state, output of action automatically return to its reducer
+            - createSlice(): used to combine action and reducer in a single file.
+                - steps to create slice of react app
+                    - create js file for defining slice
+            - createAsyncThunk(): used to make asyncrous call in an action in redux. It acceps 2 arguments, first one is  a action type string("slicename/actionname"), 2nd argument is a call back function that returns a promise. Its output can be 3 actions: pending /fullfilled/rejected. "ExtraReducers" in slice can handle promise returned action. Because it has define different cases to update slice state , based on promise output.
+        4. Hooks used in components for managing state using redux
+            - useSelector(state function): used to select state from store in a component
+            - useDispatch(): used to execute an action from a component. Hook will return a function that is capable ofdispatching an action as its argument when we call the function.
+                - action without argument: dispatch_function(action_name())
+                - action with argument : dispatch_fucntion(action_name(arg1...)), to access argument of action in slice reduce function it uses its second argument which is an object with 2 keys payload and type. payload will give the argument from action dispatch by a component.
